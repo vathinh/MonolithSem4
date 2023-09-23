@@ -1,0 +1,46 @@
+server:
+  port: 8181
+logging:
+  level:
+    org:
+      springframework:
+        security=DEBUG:
+
+spring:
+  main:
+    allow-bean-definition-overriding: 'true'
+  liquibase:
+    change-log: classpath:db.changelog/db.changelog-master.xml
+    password: admin
+    user: admin
+    url: jdbc:mysql://localhost:3308/sem4-db
+  jpa:
+    hibernate:
+      ddl-auto: none
+  datasource:
+    password: admin
+    username: admin
+    url: jdbc:mysql://localhost:3308/sem4-db
+  config:
+    import: roles.properties
+  application:
+    name: Sem4-Application
+
+keycloak:
+  auth-server-url: http://localhost:8080
+  realm: sem4Infras
+  cors: 'true'
+  cors-max-age: '0'
+  bearer-only: 'true'
+  ssl-required: external
+  resource: login-app
+  principal-attribute: preferred_username
+  public-client: 'true'
+  use-resource-role-mappings: 'true'
+
+admin:
+  keycloak:
+    client-secret: 'M18XOUsxN52C14ZGZs2OpHygjnCZJIFe'
+    client-id: backend-client
+    group-customerId: 'd741ea9d-e85f-4e0a-a934-993d12a10c46'
+    group-employeeId: '81d699a2-7878-48b9-8336-1a62419ff469'
