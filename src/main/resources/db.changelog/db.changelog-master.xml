@@ -7,8 +7,6 @@
 
     <include file="db.changelog/DDL/add-temps-to-table.sql"/>
     <include file="db.changelog/DML/add-temps-data.sql"/>
-<!--    <include file="db.changelog/DDL/add-user-type-users-table.sql"/>-->
-
 
 
 

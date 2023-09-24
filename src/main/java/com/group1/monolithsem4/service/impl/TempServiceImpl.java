@@ -8,11 +8,15 @@ import com.group1.monolithsem4.mapstruct.TempMapper;
 import com.group1.monolithsem4.model.TempEntity;
 import com.group1.monolithsem4.repository.TempRepository;
 import com.group1.monolithsem4.service.TempService;
+import com.group1.monolithsem4.specification.TempSpecification;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.query.criteria.internal.predicate.BooleanExpressionPredicate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +36,9 @@ public class TempServiceImpl implements TempService {
 
     private final EntityManager entityManager;
 
+    @Autowired
+    private final TempSpecification tempSpecification;
+
     private ResourceNotFoundException buildNotFoundException(int id) {
         return new ResourceNotFoundException("Not found entity with id: " + id);
     }
@@ -45,23 +52,9 @@ public class TempServiceImpl implements TempService {
     @Override
     @Transactional(readOnly = true)
     public Page<TempResponse> getAll(TempCriteria tempCriteria) {
-
-        Pageable pageable = tempCriteria.getPageable();
-
-
-        return tempRepository.findAll(pageable).map(mapper::toResponse);
+        return tempRepository.findAll(tempSpecification.getTempCriteria(tempCriteria), tempCriteria.getPageable())
+                .map(mapper::toResponse);
     }
-
-    private Optional<BooleanExpressionPredicate> getQuery(TempCriteria tempCriteria) {
-        //        Pageable pageable = tempCriteria.getPageable();
-//        Optional<BooleanExpressionPredicate> predicate = getQuery(tempCriteria);
-//
-//        return predicate.map(check -> tempRepository.findAll(check, pageable))
-//                .orElseGet(() -> tempRepository.findAll(pageable))
-//                .map(mapper::toResponse);
-        return Optional.empty();
-    }
-
 
     @Override
     @Transactional
@@ -70,7 +63,6 @@ public class TempServiceImpl implements TempService {
             mapper.toEntity(tempRequest, tempEntity);
             tempRepository.save(tempEntity);
         });
-
     }
 
     @Override

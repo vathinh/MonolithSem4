@@ -10,6 +10,7 @@ import java.util.Date;
 @Builder
 @ToString
 public class ErrorMessage {
+    private final String errorTitle = "Sem 4 Group 1 Controller Advise";
     private int statusCode;
     private Date timeStamp;
     private String message;
