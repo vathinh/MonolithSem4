@@ -1,12 +1,15 @@
 package com.group1.monolithsem4.dto.file;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
 public class FileResponse {
-    private String message;
-}
+    private String name;
+    private String url;
+    private String type;
+    private long size;}

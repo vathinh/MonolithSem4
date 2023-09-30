@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 
 @SpringBootApplication
 @ConfigurationPropertiesScan("com.group1.monolithsem4.config")
-public class MonolithSem4Application implements CommandLineRunner {
+public class MonolithSem4Application {
 
     @Resource
     FileService fileService;
@@ -19,9 +19,5 @@ public class MonolithSem4Application implements CommandLineRunner {
         SpringApplication.run(MonolithSem4Application.class, args);
     }
 
-    @Override
-    public void run(String ...arg) throws Exception {
-        fileService.init();
-    }
 
 }
