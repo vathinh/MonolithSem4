@@ -1,5 +1,6 @@
 server:
   port: 8181
+
 logging:
   level:
     org:
@@ -30,6 +31,16 @@ spring:
     import: roles.properties
   application:
     name: Sem4-Application
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8080/realms/sem4Infras/protocol/openid-connect/certs
+
+  servlet:
+    multipart:
+      max-file-size: 500KB
+      max-request-size: 500KB
 
 keycloak:
   auth-server-url: http://localhost:8080

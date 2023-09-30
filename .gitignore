@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+### My SQL Host Data ###
+/monolitInfras/mysql_keycloak_data/
