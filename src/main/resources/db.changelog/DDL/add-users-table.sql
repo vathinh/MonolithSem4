@@ -19,5 +19,5 @@ CREATE TABLE users (
 );
 
 CREATE INDEX idx_users_email ON users (email);
-CREATE INDEX idx_users_email ON users (id);
-CREATE INDEX idx_users_email ON users (keycloak_id);
+CREATE INDEX idx_users_id ON users (id);
+CREATE INDEX idx_users_keycloak_id ON users (keycloak_id);

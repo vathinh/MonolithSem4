@@ -12,12 +12,8 @@ import javax.annotation.Resource;
 @ConfigurationPropertiesScan("com.group1.monolithsem4.config")
 public class MonolithSem4Application {
 
-    @Resource
-    FileService fileService;
-
     public static void main(String[] args) {
         SpringApplication.run(MonolithSem4Application.class, args);
     }
-
 
 }

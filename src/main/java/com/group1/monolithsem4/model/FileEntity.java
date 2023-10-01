@@ -25,6 +25,8 @@ public class FileEntity {
 
     @Lob
     private byte[] data;
+    private String linkedTable;
+    private String linkedId;
 
     public FileEntity(String fileName, String contentType, byte[] bytes) {
         this.name = fileName;

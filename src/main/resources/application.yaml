@@ -39,8 +39,8 @@ spring:
 
   servlet:
     multipart:
-      max-file-size: 500KB
-      max-request-size: 500KB
+      max-file-size: 2MB
+      max-request-size: 2MB
 
 keycloak:
   auth-server-url: http://localhost:8080
